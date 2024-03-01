@@ -1,8 +1,6 @@
-console.log(tempData);
+const peliculasContainer = document.getElementById("peliculas");
 
 document.addEventListener("DOMContentLoaded", () => {
-  const peliculasContainer = document.getElementById("peliculas");
-
   tempData.forEach((pelicula) => {
     const card = document.createElement("div");
     card.classList.add("card");
@@ -16,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const playIcon = document.createElement("div");
     playIcon.classList.add("play-icon");
-    playIcon.innerHTML = "&#9654;";
+    playIcon.innerHTML = "▶";
 
     const movieInfo = document.createElement("div");
     movieInfo.classList.add("movie-info");
@@ -62,5 +60,57 @@ cards.forEach(function (card) {
     var p = card.querySelector(".movie-info p");
     h2.classList.toggle("hidden");
     p.classList.toggle("hidden");
+  });
+});
+
+document.getElementById("search").addEventListener("input", function (e) {
+  const searchTerm = e.target.value.toLowerCase();
+  const filteredData = tempData.filter((pelicula) =>
+    pelicula.title.toLowerCase().includes(searchTerm)
+  );
+
+  // Clear the container
+  peliculasContainer.innerHTML = "";
+
+  // Add the filtered cards
+  filteredData.forEach((pelicula) => {
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+    const overlay = document.createElement("div");
+    overlay.classList.add("overlay");
+
+    const img = document.createElement("img");
+    img.src = pelicula.poster;
+    img.alt = pelicula.title;
+
+    const playIcon = document.createElement("div");
+    playIcon.classList.add("play-icon");
+    playIcon.innerHTML = "▶";
+
+    const movieInfo = document.createElement("div");
+    movieInfo.classList.add("movie-info");
+
+    const title = document.createElement("h2");
+    title.textContent = pelicula.title;
+
+    const details = document.createElement("p");
+    details.innerHTML = `<strong>Year:</strong> ${pelicula.year}<br>
+                             <strong>Director:</strong> ${pelicula.director}<br>
+                             <strong>Duration:</strong> ${pelicula.duration}<br>
+                             <strong>Genre:</strong> ${pelicula.genre.join(
+                               ", "
+                             )}<br>
+                             <strong>Rate:</strong> ${pelicula.rate}`;
+
+    movieInfo.appendChild(title);
+    movieInfo.appendChild(details);
+
+    overlay.appendChild(img);
+    overlay.appendChild(playIcon);
+    overlay.appendChild(movieInfo);
+    card.appendChild(overlay);
+
+    peliculasContainer.appendChild(card);
   });
 });

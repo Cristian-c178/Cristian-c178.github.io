@@ -18,15 +18,30 @@
     </header>
     <nav>
       <ul>
-        <li class="opciones ">         <a href="#inicio">Inicio</a>             </li>
-        <li class="opciones ">       <a href="#peliculas">Peliculas</a>       </li>
-        <li class="opciones ">       <a href="#">Series</a>                   </li>
-        <li class="opciones ">     <a href="#">Acerca de mi</a>             </li>
-        <li class="opciones "><a href="#historia">Historia del cine</a></li>
+        <li class="opciones incio"><a href="#inicio">Inicio</a></li>
+        <li class="opciones peliculas"><a href="#peliculas">Peliculas</a></li>
+        <li class="opciones series"><a href="#">Series</a></li>
+        <li class="opciones acerca"><a href="#">Acerca de mi</a></li>
+        <li class="opciones historia">
+          <a href="#historia">Historia del cine</a>
+        </li>
+        <li class="opciones busqueda">
+          <input
+            type="text"
+            id="search"
+            placeholder="Busqueda..."
+            autocomplete="off"
+          />
+        </li>
       </ul>
     </nav>
 
     <section id="peliculas" class="peliculas-container"></section>
+
+    <footer style="height: 250px;">
+      <!-- Contenido del pie de página -->
+    </footer>
+    
 
     <script src="./scripts/tempData.js"></script>
     <script src="./scripts/index.js"></script>
